@@ -11,6 +11,5 @@ axios.defaults.baseURL = 'https://64679c42e99f0ba0a81353e2.mockapi.io/users';
 
 export async function updateFetchCard(cardId, followers) {
   const info = await axios.put(`/users/${cardId}`, { followers });
-  console.log(info);
   return info;
 }

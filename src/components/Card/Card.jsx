@@ -8,7 +8,7 @@ import { fetchGetCard } from 'components/Redux/Options';
 
 const UserCard = () => {
   const [card, setCard] = useState([]);
-  const [followingStatus, setFollowingStatus] = useState({});
+  const [followingStatus, setFollowingStatus] = useState('false');
   const [count, setCount] = useState(Number(3));
   const dispatch = useDispatch();
 
@@ -35,6 +35,11 @@ const UserCard = () => {
   function addCard() {
     const newCount = count + 3;
     setCount(newCount);
+    // localStorage.setItem('countOfCard', count);
+    // const savedData = localStorage.getItem('countOfCard');
+    // if (savedData) {
+    //   return count;
+    // }
   }
 
   const handleClick = useCallback(
@@ -44,6 +49,8 @@ const UserCard = () => {
           const updatedFollowers = following
             ? card.followers - 1
             : card.followers + 1;
+
+          //   fetchCardUpdate
           updateFetchCard(card.id, updatedFollowers)
             .then(response => {
               setCard(prevCard => {
@@ -82,8 +89,8 @@ const UserCard = () => {
     <div className={css.container}>
       {card && (
         <ul className={css.cardList}>
-          {card.slice(0, count).map(el => (
-            <li key={el.id} className={css.card}>
+          {card.slice(0, count).map(card => (
+            <li key={card.id} className={css.card}>
               <div>
                 <img src={`${logo}`} alt="logo GoIt" className={css.logo} />
               </div>
@@ -96,13 +103,17 @@ const UserCard = () => {
               </div>
               <div className={css.lineAvatar}></div>
               <div className={css.imgAvatar}>
-                <img src={`${el.avatar}`} alt={el.user} className={css.img} />
+                <img
+                  src={`${card.avatar}`}
+                  alt={card.user}
+                  className={css.img}
+                />
               </div>
               {/* <p>{el.user}</p> */}
               <p className={css.followers}>
-                {el.followers.toLocaleString('en-US')} followers
+                {card.followers.toLocaleString('en-US')} followers
               </p>
-              <p className={css.tweets}> {el.tweets} tweets</p>
+              <p className={css.tweets}> {card.tweets} tweets</p>
               <button
                 className={css.FollowBtn}
                 following={followingStatus[card.id]}
@@ -120,7 +131,7 @@ const UserCard = () => {
       )}
       {count <= card.length && (
         <button className={css.LoadMore} onClick={addCard}>
-          LoadMore
+          Load More
         </button>
       )}
     </div>
