@@ -85,10 +85,14 @@ const UserCard = () => {
           {card.slice(0, count).map(el => (
             <li key={el.id} className={css.card}>
               <div>
-                <img src={`${logo}`} alt="logo" className={css.logo} />
+                <img src={`${logo}`} alt="logo GoIt" className={css.logo} />
               </div>
               <div>
-                <img src={`${img}`} alt="picture" className={css.picture} />
+                <img
+                  src={`${img}`}
+                  alt="screen saver"
+                  className={css.picture}
+                />
               </div>
               <div className={css.lineAvatar}></div>
               <div className={css.imgAvatar}>
@@ -96,9 +100,9 @@ const UserCard = () => {
               </div>
               {/* <p>{el.user}</p> */}
               <p className={css.followers}>
-                Followers: {el.followers.toLocaleString('en-US')}
+                {el.followers.toLocaleString('en-US')} followers
               </p>
-              <p className={css.tweets}>Tweets: {el.tweets}</p>
+              <p className={css.tweets}> {el.tweets} tweets</p>
               <button
                 className={css.FollowBtn}
                 following={followingStatus[card.id]}
