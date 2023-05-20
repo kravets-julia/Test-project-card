@@ -1,15 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import css from './Card.module.css';
 import img from '../Img/picture2.png';
 import logo from '../Img/logo.png';
-import { fetchInfo } from 'components/Fetch/Fetch';
 import { useDispatch } from 'react-redux';
 import { updateFetchCard } from 'components/Fetch/UpdateFetchCard';
 import { fetchGetCard } from 'components/Redux/Options';
 
 const UserCard = () => {
-  //   const { cardId } = useParams();
   const [card, setCard] = useState([]);
   const [followingStatus, setFollowingStatus] = useState({});
   const [count, setCount] = useState(Number(3));
