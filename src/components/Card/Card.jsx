@@ -8,8 +8,13 @@ import { fetchGetCard } from 'components/Redux/Options';
 
 const UserCard = () => {
   const [card, setCard] = useState([]);
-  const [followingStatus, setFollowingStatus] = useState('false');
+  const [followingStatus, setFollowingStatus] = useState('');
   const [count, setCount] = useState(Number(3));
+  // const [pageNumber, setPageNumber] = useState(1);
+  // const [followCheck, setFollowCheck] = useState('');
+  // const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
+  // const limit = 3;
+  // const following = false;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,6 +37,37 @@ const UserCard = () => {
     setFollowingStatus(statusOfStorage);
   }, [card]);
 
+  // useEffect(() => {
+  //   const getCard = async ({ page, limit, selected }) => {
+  //     try {
+  //       return await fetchInfo(page, limit, selected).then(response => {
+  //         const infoCard = response.payload;
+  //         //   setCard(infoCard);
+
+  //         if (infoCard && infoCard.length < limit) {
+  //           setShowLoadMoreBtn(false);
+  //         } else {
+  //           setShowLoadMoreBtn(true);
+  //         }
+
+  //         //   setCard(infoCard);
+  //       });
+  //     } catch (error) {
+  //       alert(error);
+  //     }
+  //   };
+
+  //   getCard({ page: pageNumber, limit: limit, selected: followCheck });
+  // }, [pageNumber, followCheck]);
+
+  // const handleLoadMore = () => {
+  //   setPageNumber(pageNumber + 1);
+  // };
+
+  //   const handleChangeFollowCheck = value => {
+  //     setFollowCheck(value);
+  //   };
+
   function addCard() {
     const newCount = count + 3;
     setCount(newCount);
@@ -49,8 +85,6 @@ const UserCard = () => {
           const updatedFollowers = following
             ? card.followers - 1
             : card.followers + 1;
-
-          //   fetchCardUpdate
           updateFetchCard(card.id, updatedFollowers)
             .then(response => {
               setCard(prevCard => {
@@ -115,6 +149,9 @@ const UserCard = () => {
               </p>
               <p className={css.tweets}> {card.tweets} tweets</p>
               <button
+                style={{
+                  background: followingStatus[card.id] ? '#5CD3A8' : '#EBD8FF',
+                }}
                 className={css.FollowBtn}
                 following={followingStatus[card.id]}
                 onClick={event =>
@@ -129,11 +166,14 @@ const UserCard = () => {
           ))}
         </ul>
       )}
-      {count <= card.length && (
+      <button className={css.LoadMore} onClick={addCard}>
+        Load More
+      </button>
+      {/* {showLoadMoreBtn && (
         <button className={css.LoadMore} onClick={addCard}>
           Load More
         </button>
-      )}
+      )} */}
     </div>
   );
 };
