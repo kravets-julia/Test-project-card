@@ -35,6 +35,7 @@ export default function UsersList() {
     };
 
     getUsers({ page: pageNumber, limit: limit, selected: followCheck });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber, followCheck]);
 
   const handleLoadMore = () => {
