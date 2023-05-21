@@ -25,7 +25,7 @@ export default function UserCard(card) {
       setFollowersCount(followersCount + 1);
     }
   };
-  console.log(followersCount);
+
   return (
     <li className={css.card} id={card.card.id}>
       <div>
@@ -45,7 +45,7 @@ export default function UserCard(card) {
       <div>
         <p className={css.tweets}>{card.card.tweets} tweets</p>
         <p className={css.followers}>
-          {followersCount} followers
+          {followersCount.toLocaleString('en-US')} followers
           {/* {followersCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '} */}
         </p>
         <button
