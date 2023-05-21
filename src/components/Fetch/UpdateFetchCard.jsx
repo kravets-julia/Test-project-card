@@ -7,9 +7,20 @@ import axios from 'axios';
 //   return response;
 // }
 
-axios.defaults.baseURL = 'https://64679c42e99f0ba0a81353e2.mockapi.io/users';
+axios.defaults.baseURL =
+  'https://64679c42e99f0ba0a81353e2.mockapi.io/users/users';
 
-export async function updateFetchCard(cardId, followers) {
-  const info = await axios.put(`/users/${cardId}`, { followers });
-  return info;
-}
+// export async function updateFetchCard(cardId, followers) {
+//   const info = await axios.put(`/${cardId}`, { followers });
+//   return info;
+// }
+
+export const updateFetchCard = async (cardId, userData) => {
+  try {
+    await axios.put(`/${cardId}`, { ...userData }).then(({ data }) => {
+      return data;
+    });
+  } catch (error) {
+    alert(error);
+  }
+};
