@@ -14,7 +14,7 @@ export default function UsersList() {
   const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
   const [card, setCard] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [followCheck, setFollowCheck] = useState('');
+  const [followCheck] = useState('');
   const limit = 3;
 
   useEffect(() => {
