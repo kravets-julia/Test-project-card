@@ -3,13 +3,6 @@ import { fetchInfo } from 'components/Fetch/Fetch';
 import React, { useState, useEffect } from 'react';
 import css from './Card.module.css';
 
-// import UserCard from "../UserCard/UserCard";
-// import Selected from "../Selected/Selected";
-// import LoadMore from "../LoadMore/LoadMore";
-// import picture from "../../assets/picture.png";
-// import css from "./usersList.module.css";
-// import cssC from "../../components/UserCard/UserCard.module.css";
-
 export default function UsersList() {
   const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
   const [card, setCard] = useState([]);
